@@ -8,15 +8,20 @@
       <p>Semester 1 - 2022</p>
       <p>Dashboard</p>
     </div>
-    <div class="col-2 d-block d-sm-block d-md-none">
-      <button> GO </button>
+    <div class="col-2 d-block d-sm-block d-md-none" @click="showMenu">
+      <img src="../../assets/justify.svg" width="40" height="40" alt="">
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: "SearchHeader"
+  name: "SearchHeader",
+  methods:{
+    showMenu(){
+      this.$emit('change')
+    }
+  }
 }
 </script>
 
@@ -46,9 +51,5 @@ export default {
   border: 1px solid black;
 }
 
-/* 提交搜索按钮 */
-.search button {
-  font-size: 3rem;
-  border-radius: 1rem;
-}
+
 </style>

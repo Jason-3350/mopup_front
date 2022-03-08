@@ -14,7 +14,7 @@
             </div>
           </li>
           <li>
-            <input type="checkbox">
+            <input type="checkbox" >
             <div class="lecture-details">
               <p>English</p>
               <p>English Building 14:00-15:00</p>

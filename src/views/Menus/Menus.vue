@@ -1,6 +1,6 @@
 <template>
     <div class="left-sidebar text-center">
-      <div class="sidebar-img"><img src="../../assets/avatar.jpg" class="img-thumbnail" alt="Responsive image"></div>
+      <div class="sidebar-img"><img src="../../assets/avatar.jpg" class="img-thumbnail" alt="logo image"></div>
       <div class="username">Dianna J. Thompson</div>
       <div class="sideList">
         <ul>
@@ -69,6 +69,10 @@ export default {
   line-height: 5rem;
   border-top: 5px solid #f6f6f6;
   border-bottom: 5px solid #f6f6f6;
+}
+
+.sideList ul{
+  list-style: none;
 }
 
 .sideList a {

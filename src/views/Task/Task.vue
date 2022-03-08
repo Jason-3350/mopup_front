@@ -1,6 +1,5 @@
 <template>
   <div class="right-main">
-    <SearchHeader></SearchHeader>
     <Calendar></Calendar>
     <div class="task-goal row">
       <Lecture></Lecture>
@@ -11,14 +10,13 @@
 </template>
 
 <script>
-import SearchHeader from "./SearchHeader";
 import Calendar from "./Calendar";
 import Lecture from "./Lecture";
 import Goal from "./Goal";
 // import Add from "./Add";
 export default {
   name: "Task",
-  components: {Goal, Lecture, Calendar, SearchHeader},
+  components: {Goal, Lecture, Calendar},
 }
 </script>
 

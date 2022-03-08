@@ -1,6 +1,5 @@
 <template>
   <div class="right-main">
-    <SearchHeader></SearchHeader>
     <div class="adding-added row">
       <Adding></Adding>
       <Added></Added>
@@ -9,13 +8,12 @@
 </template>
 
 <script>
-import SearchHeader from "../Task/SearchHeader";
 import Adding from "./Adding";
 import Added from "./Added";
 
 export default {
   name: "AddTask",
-  components: {Added, Adding, SearchHeader},
+  components: {Added, Adding},
 }
 </script>
 

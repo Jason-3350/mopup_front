@@ -1,6 +1,5 @@
 <template>
     <div class="right-main">
-      <SearchHeader></SearchHeader>
       <Congrate></Congrate>
       <div class="reward-info row">
         <Recommend></Recommend>
@@ -10,13 +9,12 @@
 </template>
 
 <script>
-import SearchHeader from "../Task/SearchHeader";
 import Congrate from "./Congrate";
 import Recommend from "./Recommend";
 import AllReward from "./AllReward";
 export default {
   name: "Reward",
-  components: {AllReward, Recommend, Congrate, SearchHeader},
+  components: {AllReward, Recommend, Congrate},
 }
 </script>
 

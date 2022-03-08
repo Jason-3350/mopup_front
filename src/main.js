@@ -3,9 +3,10 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-import store from "./store";
+import store from "./store"
 // import './assets/bootstrap/css/bootstrap.min.css'
 import './assets/bootstrap-4.6.1-dist/css/bootstrap.min.css'
+
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
