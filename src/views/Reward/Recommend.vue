@@ -6,8 +6,8 @@
       <div class="col-2 bg-light text-center"><router-link :to="{name:'AddRecom'}">Add</router-link></div>
     </div>
     <div class="re-details">
-      <ul v-for="(recom,index) in this.$store.state.recoms" :key="recom.id">
-        <li>
+      <ul>
+        <li v-for="(recom,index) in this.$store.state.recoms" :key="recom.id" @click="detail">
           <p>{{ recom.coin }}</p>
           <a href="#">{{ recom.name }}</a>
         </li>
@@ -17,10 +17,14 @@
 </template>
 
 <script>
-
 export default {
   name: "Recommend",
-  components: {}
+  components: {},
+  methods:{
+    detail(){
+      this.$router.push({name:"RecDetail"})
+    }
+  },
 }
 </script>
 
@@ -38,7 +42,6 @@ export default {
   line-height: 5rem;
   display: flex;
 }
-
 
 /* 详情 */
 .re-details {

@@ -45,11 +45,9 @@ export default {
 /* 金币 */
 .coin a {
   font-size: 3rem;
-  /*text-decoration: none;*/
   padding: 0.5rem;
   border-radius: 20%;
   border: 1px solid black;
 }
-
 
 </style>

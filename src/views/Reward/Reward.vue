@@ -2,8 +2,8 @@
     <div class="right-main">
       <Congrate></Congrate>
       <div class="reward-info row">
-        <Recommend></Recommend>
-        <AllReward></AllReward>
+          <Recommend></Recommend>
+          <AllReward></AllReward>
       </div>
     </div>
 </template>

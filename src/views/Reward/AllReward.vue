@@ -6,8 +6,8 @@
       <div class="col-2 bg-light text-center"><router-link :to="{name:'AddReward'}">Add</router-link></div>
     </div>
     <div class="re-details">
-      <ul v-for="(reward,index) in this.$store.state.allRewards" :key="reward.id">
-        <li>
+      <ul>
+        <li v-for="(reward,index) in this.$store.state.allRewards" :key="reward.id" @click="detail">
           <p>{{ reward.coin }}</p>
           <a href="#">{{ reward.name }}</a>
         </li>
@@ -20,7 +20,12 @@
 
 export default {
   name: "AllReward",
-  components: {}
+  components: {},
+  methods:{
+    detail(){
+      this.$router.push({name:"RewDetail"});
+    }
+  }
 }
 </script>
 

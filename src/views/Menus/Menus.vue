@@ -1,25 +1,25 @@
 <template>
-    <div class="left-sidebar text-center">
-      <div class="sidebar-img"><img src="../../assets/avatar.jpg" class="img-thumbnail" alt="logo image"></div>
-      <div class="username">Dianna J. Thompson</div>
-      <div class="sideList">
-        <ul>
-          <li>
-            <router-link :to="{name:'Task'}" class="router-link-exact-active">Task</router-link>
-          </li>
-          <li>
-            <router-link :to="{name:'Reward'}" class="router-link-exact-active">Reward</router-link>
-          </li>
-          <li>
-            <a href="#">Settings</a>
-          </li>
-          <li>
-            <a href="#">Notification</a>
-          </li>
-        </ul>
-      </div>
-      <button class="logout" @click="logout">Log Out</button>
+  <div class="left-sidebar text-center">
+    <div class="sidebar-img"><img src="../../assets/avatar.jpg" class="img-thumbnail" alt="logo image"></div>
+    <div class="username">{{ this.$store.state.user.username }}</div>
+    <div class="sideList">
+      <ul>
+        <li>
+          <router-link :to="{name:'Task'}" class="router-link-exact-active">Task</router-link>
+        </li>
+        <li>
+          <router-link :to="{name:'Reward'}" class="router-link-exact-active">Reward</router-link>
+        </li>
+        <li>
+          <router-link :to="{name:'Settings'}" class="router-link-exact-active">Settings</router-link>
+        </li>
+        <li>
+          <router-link :to="{name:'Notice'}" class="router-link-exact-active">Notification</router-link>
+        </li>
+      </ul>
     </div>
+    <button class="logout" @click="logout">Log Out</button>
+  </div>
 </template>
 
 <script>
@@ -71,7 +71,7 @@ export default {
   border-bottom: 5px solid #f6f6f6;
 }
 
-.sideList ul{
+.sideList ul {
   list-style: none;
 }
 

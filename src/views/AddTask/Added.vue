@@ -5,10 +5,10 @@
       <ul v-for="(todo,index) in this.$store.state.todos" :key="todo.id">
         <li class="row align-items-center">
           <div class="added-details col-10">
-            <p>{{todo.event}}</p>
-            <p>{{todo.location}} {{todo.start}} - {{todo.end}}</p>
+            <p>{{ todo.event }}</p>
+            <p>{{ todo.location }} {{ todo.start }} - {{ todo.end }}</p>
           </div>
-          <div class="col-2 text-center">
+          <div class="col-2 text-center" @click="del(todo.id)">
             <button class="del">Delete</button>
           </div>
         </li>
@@ -21,30 +21,36 @@
 <script>
 export default {
   name: "Added",
-  data(){
-    return{
-    }
+  data() {
+    return {}
   },
-  methods:{
-    done(){
-      this.$router.push({name:"Task"});
-    }
+  methods: {
+    done() {
+      this.$router.push({name: "Task"});
+    },
+    del(id) {
+      console.log(id);
+      this.$store.commit('removeTodo');
+      console.log('done')
+    },
   }
 }
 </script>
 
 <style scoped>
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
+
 /* 目标栏标题 */
 .added-title {
   background-color: #eee;
   font-size: 2.8rem;
   display: flex;
 }
+
 .added-title::before {
   content: '';
   width: 2rem;
@@ -66,10 +72,12 @@ export default {
   font-size: 2.5rem;
   padding: 1rem 0;
 }
+
 .added-details p:nth-child(2) {
   font-size: 1.5rem;
 }
-.done{
+
+.done {
   padding: 0.5rem 0;
   font-size: 2.5rem;
   background-color: #f6f6f6;

@@ -1,5 +1,5 @@
 <template>
-  <div class="row align-content-center">
+  <div class="row">
     <form class="col-12">
       <div class="form-group">
         <label class="form-control-lg">RecommendID: </label>
@@ -43,7 +43,4 @@ export default {
 </script>
 
 <style scoped>
-.row {
-  height: 100%;
-}
 </style>
