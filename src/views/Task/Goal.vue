@@ -8,14 +8,14 @@
       </div>
     </div>
     <div class="goal-list">
-      <ul v-for="(todo,index) in this.$store.state.todos" :key="todo.id">
+      <ul v-for="(todo,index) in todos" :key="todo.id">
         <li>
           <div class="row align-items-center">
             <div class="col-2 text-center">
               <input class="checkbox" type="checkbox">
             </div>
             <div class="goal-details col-10">
-              <p>{{ todo.event }}</p>
+              <p>{{ todo.goal }}</p>
               <p>{{ todo.location }} {{ todo.start }} -- {{ todo.end }}</p>
             </div>
           </div>
@@ -26,8 +26,28 @@
 </template>
 
 <script>
+import instance from "../../utils/request";
+
 export default {
   name: "Goal",
+  data() {
+    return {
+      todos: [],
+    }
+  },
+  created() {
+    // localStorage拿到当前登录用户的id
+    const userID = JSON.parse(localStorage.getItem('user')).id
+    let url = `/users/${userID}/goals`
+    instance.get(url).then(res => {
+      if (res.status === 200) {
+        this.todos = res.data
+        console.log(res.data)
+      }
+    }).catch(err => {
+      console.log(err)
+    });
+  },
 }
 </script>
 

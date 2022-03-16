@@ -3,13 +3,15 @@
     <div class="re-title row">
       <div class="col-1 bg-success"></div>
       <div class="col-9">Recommendation</div>
-      <div class="col-2 bg-light text-center"><router-link :to="{name:'AddRecom'}">Add</router-link></div>
+      <div class="col-2 bg-light text-center">
+        <router-link :to="{name:'AddRecom'}">Add</router-link>
+      </div>
     </div>
     <div class="re-details">
       <ul>
-        <li v-for="(recom,index) in this.$store.state.recoms" :key="recom.id" @click="detail">
-          <p>{{ recom.coin }}</p>
-          <a href="#">{{ recom.name }}</a>
+        <li v-for="(recommend,index) in recommends" :key="recommend.id" @click="detail">
+          <p>{{ recommend.coin }}</p>
+          <a href="#">{{ recommend.name }}</a>
         </li>
       </ul>
     </div>
@@ -17,22 +19,39 @@
 </template>
 
 <script>
+import instance from "../../utils/request";
+
 export default {
   name: "Recommend",
-  components: {},
-  methods:{
-    detail(){
-      this.$router.push({name:"RecDetail"})
+  data() {
+    return {
+      recommends: "",
     }
+  },
+  components: {},
+  methods: {
+    detail() {
+      this.$router.push({name: "RecDetail"})
+    }
+  },
+  created() {
+    instance.get('/recommend').then(res => {
+      if (res.status === 200) {
+        this.recommends = res.data;
+      }
+    }).catch(err=>{
+      console.log(err);
+    })
   },
 }
 </script>
 
 <style scoped>
-*{
+* {
   margin: 0;
   padding: 0;
 }
+
 /* 标题栏 */
 .re-title {
   height: 5rem;

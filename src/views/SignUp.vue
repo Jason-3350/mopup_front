@@ -9,6 +9,10 @@
           <h3 style="text-align: center">Sign Up</h3>
           <form>
             <div class="form-group">
+              <label>Username</label>
+              <input type="text" class="form-control" placeholder="Username" v-model="username">
+            </div>
+            <div class="form-group">
               <label>Email address</label>
               <input type="email" class="form-control" placeholder="Email" v-model="email">
             </div>
@@ -35,6 +39,7 @@ export default {
   name: "SignUp",
   data() {
     return {
+      username: "",
       email: "",
       psw: "",
       status: "",
@@ -68,6 +73,7 @@ export default {
         // 上面判断都完成后发送axios请求
         console.log('Sign UP');
         instance.post("/register", {
+          username: this.username,
           userEmail: this.email,
           password: this.psw,
         }).then(res => {
@@ -75,6 +81,9 @@ export default {
           if (res.data.result === true) {
             // 请求成功接收成功的信息
             this.status = res.data.msg;
+            this.username = "";
+            this.email = "";
+            this.psw = "";
           }
           if (res.data.result === false) {
             // 接收并显示后端报错的信息

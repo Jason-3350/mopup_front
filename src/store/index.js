@@ -16,12 +16,13 @@ const store = new Vuex.Store({
       {id: 3, coin: 15, name: "Starbucks"},
     ],
     // 推荐奖励
-    recoms: [
-      {id: 1, coin: 20, name: "Collaboration with business"},
-      {id: 2, coin: 10, name: "Sport Village"},
-    ],
+    // recoms: [
+    //   {id: 1, coin: 20, name: "Collaboration with business"},
+    //   {id: 2, coin: 10, name: "Sport Village"},
+    // ],
     // 保存用户名
-    user: {username: 'Dianna J. Thompson'},
+    // user: {username: 'Dianna J. Thompson'},
+    user: {},
   },
   mutations: {
     // 定义方法添加新的todo
@@ -42,8 +43,8 @@ const store = new Vuex.Store({
       state.recoms.push(obj);
     },
     // 修改用户名
-    changeUserName(state, newName) {
-      state.user.username = newName
+    updateUser(state, userObj) {
+      state.user = userObj
     }
   }
 });

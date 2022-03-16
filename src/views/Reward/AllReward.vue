@@ -7,7 +7,7 @@
     </div>
     <div class="re-details">
       <ul>
-        <li v-for="(reward,index) in this.$store.state.allRewards" :key="reward.id" @click="detail">
+        <li v-for="(reward,index) in rewards" :key="reward.id" @click="detail">
           <p>{{ reward.coin }}</p>
           <a href="#">{{ reward.name }}</a>
         </li>
@@ -18,14 +18,30 @@
 
 <script>
 
+import instance from "../../utils/request";
+
 export default {
   name: "AllReward",
+  data(){
+    return{
+      rewards:"",
+    }
+  },
   components: {},
   methods:{
     detail(){
       this.$router.push({name:"RewDetail"});
     }
-  }
+  },
+  created() {
+    instance.get('/reward').then(res=>{
+      if (res.status===200){
+        this.rewards=res.data;
+      }
+    }).catch(err=>{
+      console.log(err);
+    })
+  },
 }
 </script>
 

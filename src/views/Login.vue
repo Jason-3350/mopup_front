@@ -29,7 +29,6 @@
 </template>
 
 <script>
-import axios from "axios";
 import instance from "../utils/request";
 
 export default {
@@ -71,15 +70,21 @@ export default {
         console.log('Sign IN');
         // 拿到用户输入的账号密码发送axios请求到后端
         instance.post("/login", {
-          userEmail: this.email,
+          username: this.email,
           password: this.psw,
         }).then(res => {
           console.log(res.data);
-          if (res.data.result === true) {
-            this.$router.push({name: 'Task'});
-          }
-          if (res.data.result === false) {
-            this.status = res.data.msg;
+          console.log(res.status);
+          if (res.status === 200) {
+            // 后端返回的email和前端一致则通过验证
+            if (res.data.email === this.email) {
+              this.$store.commit("updateUser", res.data);
+              // 登录成功把数据存储在本地浏览器
+              localStorage.setItem("user", JSON.stringify(res.data));
+              this.$router.push({name: 'Task'});
+            } else {
+              this.status = res.data.msg;
+            }
           }
         }).catch(err => {
           console.log(err)

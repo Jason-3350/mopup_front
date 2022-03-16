@@ -1,7 +1,7 @@
 <template>
   <div class="left-sidebar text-center">
     <div class="sidebar-img"><img src="../../assets/avatar.jpg" class="img-thumbnail" alt="logo image"></div>
-    <div class="username">{{ this.$store.state.user.username }}</div>
+    <div class="username">{{ username }}</div>
     <div class="sideList">
       <ul>
         <li>
@@ -25,9 +25,20 @@
 <script>
 export default {
   name: "Menus",
+  data() {
+    return {
+      username: '',
+    }
+  },
+  created() {
+    const user = JSON.parse(localStorage.getItem('user'))
+    this.username = user.username
+  },
   methods: {
     logout() {
       this.$router.push({name: 'Login'});
+      // 退出时删除本地存储数据
+      localStorage.clear();
     }
   }
 }
