@@ -2,10 +2,10 @@
   <div class="added col-md-6">
     <div class="added-title">Added</div>
     <div class="added-list">
-      <ul v-for="(todo,index) in this.$store.state.todos" :key="todo.id">
+      <ul v-for="(todo,index) in todos" :key="todo.id">
         <li class="row align-items-center">
           <div class="added-details col-10">
-            <p>{{ todo.event }}</p>
+            <p>{{ todo.goal }}</p>
             <p>{{ todo.location }} {{ todo.start }} - {{ todo.end }}</p>
           </div>
           <div class="col-2 text-center" @click="del(todo.id)">
@@ -19,21 +19,51 @@
 </template>
 
 <script>
+import instance from "../../utils/request";
+
 export default {
   name: "Added",
   data() {
-    return {}
+    return {
+      todos: [],
+    }
   },
   methods: {
     done() {
       this.$router.push({name: "Task"});
     },
+    getTodos() {
+      const userID = JSON.parse(localStorage.getItem('user')).id
+      let url = `/users/${userID}/goals`
+      instance.get(url).then(res => {
+        if (res.status === 200) {
+          this.todos = res.data;
+          // console.log(res.data);
+        }
+      }).catch(err => {
+        console.log(err);
+      })
+    },
     del(id) {
       console.log(id);
-      this.$store.commit('removeTodo');
-      console.log('done')
+      if (window.confirm("Are you sure to delete ?")) {
+        let url = `/users/${id}/goals`
+        instance.delete(url).then(res => {
+          if (res.status === 204) {
+            this.getTodos()
+          }
+        }).catch(err => {
+          console.log(err);
+        })
+      }
+      // console.log(id);
+      // this.$store.commit('removeTodo');
+      // console.log('done')
     },
-  }
+  },
+  created() {
+    this.getTodos()
+  },
 }
 </script>
 

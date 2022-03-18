@@ -1,8 +1,9 @@
 <template>
   <div class="right-main">
     <div class="adding-added row">
-      <Adding></Adding>
-      <Added></Added>
+<!--      通过父组件AddTask调用Added的方法-->
+      <Adding @updateTodos="refreshTodos"></Adding>
+      <Added ref="refreshTodos"></Added>
     </div>
   </div>
 </template>
@@ -14,6 +15,11 @@ import Added from "./Added";
 export default {
   name: "AddTask",
   components: {Added, Adding},
+  methods: {
+    refreshTodos() {
+      this.$refs.refreshTodos.getTodos();
+    }
+  }
 }
 </script>
 

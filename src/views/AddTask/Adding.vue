@@ -3,24 +3,19 @@
     <div class="adding-title">Adding</div>
     <div class="adding-list">
       <div class="adding-area">
-        <input type="text" placeholder="Add events here" v-model="events.event">
+        <input type="text" placeholder="Add goal here" v-model="goal">
       </div>
-
       <div class="adding-area">
-        <input type="text" placeholder="Add location here" v-model="events.location">
+        <input type="text" placeholder="Add location here" v-model="location">
       </div>
-
       <div class="adding-area">
         <vue-timepicker placeholder="Start Time" input-width="100%" style="font-size: 2rem;"
-                        v-model="startTimeValue"></vue-timepicker>
+                        v-model="startTimeValue" close-on-complete></vue-timepicker>
       </div>
-
       <div class="adding-area">
         <vue-timepicker placeholder="End Time" input-width="100%" style="font-size: 2rem;"
-                        v-model="endTimeValue"></vue-timepicker>
+                        v-model="endTimeValue" close-on-complete></vue-timepicker>
       </div>
-
-
     </div>
     <div class="done row justify-content-center" @click="add">Add</div>
   </div>
@@ -30,26 +25,54 @@
 import {nanoid} from 'nanoid'
 import VueTimepicker from 'vue2-timepicker'
 import 'vue2-timepicker/dist/VueTimepicker.css'
+import instance from "../../utils/request";
 
 export default {
   name: "Adding",
   components: {VueTimepicker},
   data() {
     return {
-      events: {},
-      startTimeValue:"",
+      goal: "",
+      location: "",
+      startTimeValue: "",
       endTimeValue: "",
     }
   },
   methods: {
     add() {
-      this.$set(this.events, 'id', nanoid());
-      this.$set(this.events, 'done', 'false');
-      this.$set(this.events, 'start', this.startTimeValue);
-      this.$set(this.events, 'end', this.endTimeValue);
-      this.$store.commit('addTodo', this.events);
-      console.log(this.startTimeValue);
-      this.events = {};
+      if (window.confirm("Are you sure to add it ?")) {
+        const curDate = new Date();//获取当前时间
+        // 获取日期格式并转换成django要求的数据格式
+        const today = curDate.toLocaleDateString().replaceAll('/', '-');//获取当前日期
+        instance.post('/users/addgoals', {
+          goal: this.goal,
+          location: this.location,
+          date: today,
+          start: this.startTimeValue,
+          end: this.endTimeValue,
+          status: '0',
+          user: JSON.parse(localStorage.getItem('user')).id,
+        }).then(res => {
+          if (res.status === 201) {
+            // 通过父组件AddTask调用Added的方法
+            this.$emit("updateTodos");
+            // console.log(res.data);
+            this.goal = "";
+            this.location = "";
+            this.startTimeValue = "";
+            this.endTimeValue = "";
+          }
+        }).catch(err => {
+          console.log(err);
+        })
+        // this.$set(this.events, 'id', nanoid());
+        // this.$set(this.events, 'done', 'false');
+        // this.$set(this.events, 'start', this.startTimeValue);
+        // this.$set(this.events, 'end', this.endTimeValue);
+        // this.$store.commit('addTodo', this.events);
+        // console.log(this.startTimeValue);
+        // this.events = {};
+      }
     }
   }
 }

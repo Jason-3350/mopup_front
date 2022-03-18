@@ -9,9 +9,9 @@
     </div>
     <div class="re-details">
       <ul>
-        <li v-for="(recommend,index) in recommends" :key="recommend.id" @click="detail">
-          <p>{{ recommend.coin }}</p>
-          <a href="#">{{ recommend.name }}</a>
+        <li class="row" v-for="(recommend,index) in recommends" :key="recommend.id" @click="detail(recommend.id)">
+          <p class="col-2 text-center">{{ recommend.coin }}</p>
+          <div class="recommend_name col-10">{{ recommend.name }}</div>
         </li>
       </ul>
     </div>
@@ -30,8 +30,17 @@ export default {
   },
   components: {},
   methods: {
-    detail() {
-      this.$router.push({name: "RecDetail"})
+    detail(id) {
+      // console.log(id);
+      instance.get('/recommend/' + id).then(res => {
+        if (res.status === 200) {
+          // console.log(res.data);
+          localStorage.setItem('recommend', JSON.stringify(res.data));
+          this.$router.push({name: "RecDetail"});
+        }
+      }).catch(err => {
+        console.log(err);
+      })
     }
   },
   created() {
@@ -39,7 +48,7 @@ export default {
       if (res.status === 200) {
         this.recommends = res.data;
       }
-    }).catch(err=>{
+    }).catch(err => {
       console.log(err);
     })
   },
@@ -54,36 +63,18 @@ export default {
 
 /* 标题栏 */
 .re-title {
-  height: 5rem;
-  width: 100%;
   background-color: #eee;
   font-size: 3rem;
-  line-height: 5rem;
-  display: flex;
-}
-
-/* 详情 */
-.re-details {
-  width: 100%;
-  /* height: 8rem; */
-}
-
-.re-details ul li {
-  height: 8rem;
-  display: flex;
 }
 
 .re-details ul li p {
-  text-align: center;
   line-height: 8rem;
   font-size: 2rem;
-  flex: 1 1 20%;
 }
 
-.re-details ul li a {
-  font-size: 2rem;
+.recommend_name {
   line-height: 8rem;
-  text-decoration: none;
-  flex: 1 1 80%;
+  font-size: 2rem;
+  color: blue;
 }
 </style>

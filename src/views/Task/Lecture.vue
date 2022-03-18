@@ -23,8 +23,8 @@
               <input class="checkbox" type="checkbox">
             </div>
             <div class="lecture-details col-10">
-              <p>English</p>
-              <p>English Building 14:00-15:00</p>
+              <p>Math</p>
+              <p>Math Building 14:00-15:00</p>
             </div>
           </div>
         </li>

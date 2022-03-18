@@ -42,7 +42,7 @@ export default {
     instance.get(url).then(res => {
       if (res.status === 200) {
         this.todos = res.data
-        console.log(res.data)
+        // console.log(res.data)
       }
     }).catch(err => {
       console.log(err)

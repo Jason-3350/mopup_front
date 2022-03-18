@@ -1,7 +1,7 @@
 <template>
   <div class="search row align-items-center text-center">
     <div class="coin col-2">
-      <a href="#">50</a>
+      <a href="#">{{ coin }}</a>
     </div>
     <!--    <input type="text" placeholder="Search..." class="col-7">-->
     <div class="dashboard col-8">
@@ -15,12 +15,31 @@
 </template>
 
 <script>
+import instance from "../../utils/request";
+
 export default {
   name: "SearchHeader",
-  methods:{
-    showMenu(){
+  data() {
+    return {
+      coin: "",
+    }
+  },
+  methods: {
+    showMenu() {
       this.$emit('change')
     }
+  },
+  created() {
+    const userID = JSON.parse(localStorage.getItem('user')).id;
+    let url = `/users/${userID}/coins`;
+    instance.get(url).then(res => {
+      if (res.status === 200) {
+        this.coin = res.data.coin
+        console.log(res.data)
+      }
+    }).catch(err => {
+      console.log(err)
+    })
   }
 }
 </script>
