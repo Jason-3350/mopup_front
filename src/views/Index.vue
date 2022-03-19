@@ -1,7 +1,7 @@
 <template>
-  <div id="index" class="row">
-    <Menus class="col-md-3 d-none d-md-inline no-gutters"></Menus>
-    <div class="content col-md-9 no-gutters">
+  <div id="index" class="row no-gutters">
+    <Menus class="col-md-3 d-none d-md-inline"></Menus>
+    <div class="content col-md-9">
       <SearchHeader @change="menus"></SearchHeader>
       <!--      平时隐藏，只有点击展开才触发函数显示出来-->
       <!--      <Menus class="d-block d-sm-block d-md-none"></Menus>-->
