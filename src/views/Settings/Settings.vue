@@ -1,6 +1,6 @@
 <template>
   <!--  导入ics文件-->
-  <div class="row">
+  <div class="row no-gutters">
     <div class="col-12">
       <label class="form-control-lg col-12">Import Ics: </label>
     </div>

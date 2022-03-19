@@ -1,5 +1,5 @@
 <template>
-  <div class="congregate row justify-content-center">
+  <div class="congregate row justify-content-center no-gutters">
     <div class="text-nowrap">Congratulations You Got 50 coins !!!</div>
   </div>
 </template>

@@ -1,7 +1,7 @@
 <template>
     <div class="right-main">
       <Congrate></Congrate>
-      <div class="reward-info row">
+      <div class="reward-info row no-gutters">
           <Recommend></Recommend>
           <AllReward></AllReward>
       </div>

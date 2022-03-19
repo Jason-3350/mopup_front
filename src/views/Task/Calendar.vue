@@ -1,6 +1,6 @@
 <template>
     <div class="calendar text-center">
-      <ul class="row list-group list-group-horizontal justify-content-center align-items-center">
+      <ul class="row list-group list-group-horizontal justify-content-center align-items-center no-gutters">
         <li>{{ dateList[0] }}</li>
         <li>{{ dateList[1] }}</li>
         <li>{{ dateList[2] }}</li>

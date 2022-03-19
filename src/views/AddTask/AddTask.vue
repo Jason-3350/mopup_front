@@ -1,6 +1,6 @@
 <template>
   <div class="right-main">
-    <div class="adding-added row">
+    <div class="adding-added row no-gutters">
 <!--      通过父组件AddTask调用Added的方法-->
       <Adding @updateTodos="refreshTodos"></Adding>
       <Added ref="refreshTodos"></Added>

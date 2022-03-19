@@ -1,6 +1,6 @@
 <template>
   <div class="all-rewards  col-md-6">
-    <div class="re-title row">
+    <div class="re-title row no-gutters">
       <div class="col-1 bg-success"></div>
       <div class="col-9">All Rewards</div>
       <div class="col-2 bg-light text-center">
@@ -9,7 +9,7 @@
     </div>
     <div class="re-details">
       <ul>
-        <li class="row" v-for="(reward,index) in rewards" :key="reward.id" @click="detail(reward.id)">
+        <li class="row no-gutters" v-for="(reward,index) in rewards" :key="reward.id" @click="detail(reward.id)">
           <p class="col-2 text-center">{{ reward.coin }}</p>
           <div class="reward_name col-10">{{ reward.name }}</div>
         </li>

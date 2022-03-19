@@ -1,13 +1,13 @@
 <template>
   <div class="lecture col-md-6">
-    <div class="lecture-title row">
+    <div class="lecture-title row no-gutters">
       <div class="bg-info col-1"></div>
       <div class="col-11">Lecture</div>
     </div>
     <div class="lecture-list">
       <ul>
         <li>
-          <div class="row align-items-center">
+          <div class="row align-items-center no-gutters">
             <div class="col-2 text-center">
               <input class="checkbox" type="checkbox">
             </div>
@@ -18,7 +18,7 @@
           </div>
         </li>
         <li>
-          <div class="row align-items-center">
+          <div class="row align-items-center no-gutters">
             <div class="col-2 text-center">
               <input class="checkbox" type="checkbox">
             </div>

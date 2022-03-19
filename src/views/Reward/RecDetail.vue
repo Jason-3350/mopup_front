@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="card text-center">
-      <div class="row justify-content-center" style="margin:0; padding: 0;">
+      <div class="row justify-content-center no-gutters" style="margin:0; padding: 0;">
         <img src="../../assets/MOPUP-logos_transparent.png" class="card-img-top" alt="..."
              style="height: 20rem;width: 20rem">
       </div>

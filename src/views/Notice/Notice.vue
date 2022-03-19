@@ -1,5 +1,5 @@
 <template>
-  <div class="row">
+  <div class="row no-gutters">
     <ul class="list-group col-12">
       <li class="list-group-item">An item</li>
       <li class="list-group-item">A second item</li>

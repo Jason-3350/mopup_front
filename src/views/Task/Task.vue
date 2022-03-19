@@ -1,7 +1,7 @@
 <template>
   <div class="right-main">
     <Calendar></Calendar>
-    <div class="task-goal row">
+    <div class="task-goal row no-gutters">
       <Lecture></Lecture>
       <Goal></Goal>
     </div>

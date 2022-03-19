@@ -17,7 +17,7 @@
                         v-model="endTimeValue" close-on-complete></vue-timepicker>
       </div>
     </div>
-    <div class="done row justify-content-center" @click="add">Add</div>
+    <div class="done row justify-content-center no-gutters" @click="add">Add</div>
   </div>
 </template>
 

@@ -1,6 +1,6 @@
 <template>
   <div class="goal col-md-6">
-    <div class="goal-title row">
+    <div class="goal-title row no-gutters">
       <div class="col-1 bg-success"></div>
       <div class="col-9">Goals</div>
       <div class="col-2 bg-light text-center">
@@ -10,7 +10,7 @@
     <div class="goal-list">
       <ul v-for="(todo,index) in todos" :key="todo.id">
         <li>
-          <div class="row align-items-center">
+          <div class="row align-items-center no-gutters">
             <div class="col-2 text-center">
               <input class="checkbox" type="checkbox">
             </div>

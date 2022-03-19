@@ -3,7 +3,7 @@
     <div class="added-title">Added</div>
     <div class="added-list">
       <ul v-for="(todo,index) in todos" :key="todo.id">
-        <li class="row align-items-center">
+        <li class="row align-items-center no-gutters">
           <div class="added-details col-10">
             <p>{{ todo.goal }}</p>
             <p>{{ todo.location }} {{ todo.start }} - {{ todo.end }}</p>
@@ -14,7 +14,7 @@
         </li>
       </ul>
     </div>
-    <div class="done row justify-content-center" @click="done">Done</div>
+    <div class="done row justify-content-center no-gutters" @click="done">Done</div>
   </div>
 </template>
 

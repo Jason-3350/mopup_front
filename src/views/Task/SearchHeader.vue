@@ -1,5 +1,5 @@
 <template>
-  <div class="search row align-items-center text-center">
+  <div class="search row align-items-center text-center no-gutters">
     <div class="coin col-2">
       <a href="#">{{ coin }}</a>
     </div>

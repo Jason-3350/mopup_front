@@ -1,6 +1,6 @@
 <template>
   <div class="recommendation  col-md-6">
-    <div class="re-title row">
+    <div class="re-title row no-gutters">
       <div class="col-1 bg-success"></div>
       <div class="col-9">Recommendation</div>
       <div class="col-2 bg-light text-center">
@@ -9,7 +9,7 @@
     </div>
     <div class="re-details">
       <ul>
-        <li class="row" v-for="(recommend,index) in recommends" :key="recommend.id" @click="detail(recommend.id)">
+        <li class="row no-gutters" v-for="(recommend,index) in recommends" :key="recommend.id" @click="detail(recommend.id)">
           <p class="col-2 text-center">{{ recommend.coin }}</p>
           <div class="recommend_name col-10">{{ recommend.name }}</div>
         </li>

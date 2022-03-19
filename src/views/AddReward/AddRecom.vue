@@ -1,5 +1,5 @@
 <template>
-  <div class="row">
+  <div class="row no-gutters">
     <form class="col-12">
       <!--      <div class="form-group">-->
       <!--        <label class="form-control-lg">RecommendID: </label>-->
