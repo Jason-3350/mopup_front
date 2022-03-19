@@ -11,6 +11,10 @@ export default {
 </script>
 
 <style scoped>
+*{
+  padding: 0;
+  margin: 0;
+}
 .congregate {
   height: 5rem;
   line-height: 5rem;

@@ -45,6 +45,10 @@ export default {
 </script>
 
 <style scoped>
+*{
+  padding: 0;
+  margin: 0;
+}
 .router-link-active {
   background-color: #eeeeee;
 }
