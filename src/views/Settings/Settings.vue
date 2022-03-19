@@ -28,7 +28,7 @@
         <input type="password" class="form-control form-control-lg" placeholder="New Password" v-model="newPassword">
       </div>
       <div class="form-group text-center">
-        <button type="submit" class="btn btn-primary" @click="back">GoBack</button>
+        <button type="button" class="btn btn-primary" @click="back">GoBack</button>
         <button type="submit" class="btn btn-primary" @click="done">Submit</button>
       </div>
     </form>

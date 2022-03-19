@@ -74,7 +74,7 @@ export default {
 }
 
 .goal-details {
-  font-size: 3rem;
+  font-size: 2.5rem;
 }
 
 .goal-details p:nth-child(2) {

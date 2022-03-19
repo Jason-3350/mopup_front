@@ -17,7 +17,7 @@
               <input type="password" class="form-control" placeholder="Password" v-model="psw">
             </div>
             <div style="text-align: center">
-              <button type="submit" class="btn btn-outline-secondary" @click="signup">Sign Up</button>
+              <button type="button" class="btn btn-outline-secondary" @click="signup">Sign Up</button>
               <button type="submit" class="btn btn-primary" @click="signin">Sign In</button>
             </div>
             <div class="text-center" v-if="status">{{ status }}</div>

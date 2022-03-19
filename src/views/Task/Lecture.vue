@@ -62,7 +62,7 @@ export default {
 }
 
 .lecture-details {
-  font-size: 3rem;
+  font-size: 2.5rem;
 }
 
 .lecture-details p:nth-child(2) {
