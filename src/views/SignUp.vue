@@ -22,7 +22,7 @@
             </div>
             <div style="text-align: center">
               <button type="button" class="btn btn-outline-secondary" @click="goBack">Go Back</button>
-              <button type="submit" class="btn btn-primary" @click="signup">Sign Up</button>
+              <button type="submit" class="btn btn-primary" @click.p.prevent="signup">Sign Up</button>
             </div>
             <div class="text-center" v-if="status">{{ status }}</div>
           </form>

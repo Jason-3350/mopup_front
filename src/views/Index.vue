@@ -41,11 +41,10 @@ export default {
 * {
   padding: 0;
   margin: 0;
-  box-sizing: border-box;
+  /*box-sizing: border-box;*/
 }
 
 #index {
-  width: 100%;
   height: 100%;
 }
 

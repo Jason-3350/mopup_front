@@ -18,7 +18,7 @@
             </div>
             <div style="text-align: center">
               <button type="button" class="btn btn-outline-secondary" @click="signup">Sign Up</button>
-              <button type="submit" class="btn btn-primary" @click="signin">Sign In</button>
+              <button type="submit" class="btn btn-primary" @click.p.prevent="signin">Sign In</button>
             </div>
             <div class="text-center" v-if="status">{{ status }}</div>
           </form>

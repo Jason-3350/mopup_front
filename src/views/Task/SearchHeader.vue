@@ -21,7 +21,7 @@ export default {
   name: "SearchHeader",
   data() {
     return {
-      coin: "",
+      coin: 0,
     }
   },
   methods: {
