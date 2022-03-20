@@ -55,6 +55,7 @@ export default {
 
 /* 左侧 */
 .left-sidebar {
+  height: 100vh;
   border-right: 5px solid #f6f6f6;
 }
 

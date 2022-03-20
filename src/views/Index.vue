@@ -8,7 +8,7 @@
       <router-view></router-view>
     </div>
     <div class="sidebar" v-show="showMenu">
-      <div @click="menus">
+      <div class="arrow" @click="menus">
         <img src="../assets/arrow-right-square.svg" alt="close sidebar" style="height: 3rem;margin: 1rem">
       </div>
       <Menus></Menus>
@@ -54,5 +54,13 @@ export default {
   z-index: 3;
   height: 100vh;
   background-color: #f6f6f6;
+}
+
+.arrow{
+  width: inherit;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 5;
 }
 </style>
