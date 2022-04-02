@@ -29,8 +29,8 @@ instance.interceptors.request.use(
 // npm install axios-auth-refresh --save
 // Make a call. If it returns a 401 error, the refreshAuthLogic will be run,
 // Function that will be called to refresh authorization
-let refresh = localStorage.getItem('refresh')
-const refreshAuthLogic = failedRequest => instance.post('/token/refresh', {refresh: refresh}).then(tokenRefreshResponse => {
+// let refresh = localStorage.getItem('refresh')
+const refreshAuthLogic = failedRequest => instance.post('/token/refresh', {refresh: localStorage.getItem('refresh')}).then(tokenRefreshResponse => {
   // localStorage.setItem('token', tokenRefreshResponse.data.access);
   store.commit('setToken',tokenRefreshResponse.data.access);
   failedRequest.response.config.headers['Authorization'] = 'Bearer ' + tokenRefreshResponse.data.access;
