@@ -18,9 +18,8 @@
             </div>
             <div style="text-align: center">
               <button type="button" class="btn btn-outline-secondary" @click="signup">Sign Up</button>
-              <button type="submit" class="btn btn-primary" @click.p.prevent="signin">Sign In</button>
+              <button type="submit" class="btn btn-primary" @click.p.prevent="signIn">Sign In</button>
             </div>
-            <div class="text-center" v-if="status">{{ status }}</div>
           </form>
         </div>
       </div>
@@ -30,6 +29,7 @@
 
 <script>
 import instance from "../utils/request";
+import Task from "./Task/Task";
 
 export default {
   name: "Login",
@@ -37,7 +37,6 @@ export default {
     return {
       email: "",
       psw: "",
-      status: "",
     }
   },
   methods: {
@@ -60,39 +59,30 @@ export default {
         return false;
       }
     },
-
     signup() {
       this.$router.push({name: "SignUp"});
     },
-
-    signin() {
-      if (this.validEmail() !== false) {
-        console.log('Sign IN');
-        // 拿到用户输入的账号密码发送axios请求到后端
-        instance.post("/login", {
-          username: this.email,
-          password: this.psw,
-        }).then(res => {
-          console.log(res.data);
-          console.log(res.status);
-          if (res.status === 200) {
-            // 后端返回的email和前端一致则通过验证
-            if (res.data.email === this.email) {
-              this.$store.commit("updateUser", res.data);
-              // 登录成功把数据存储在本地浏览器
-              localStorage.setItem("user", JSON.stringify(res.data));
-              this.$router.push({name: 'Task'});
-            } else {
-              this.status = res.data.msg;
-            }
-          }
-        }).catch(err => {
-          console.log(err)
-        })
-      }
+    signIn() {
+      instance.post('token', {
+        username: this.email,
+        password: this.psw,
+      }).then(res => {
+        // save token and refresh token into vuex
+        this.$store.commit('setToken', res.data.access);
+        this.$store.commit('refreshToken', res.data.refresh);
+        const token = localStorage.getItem('token');
+        // Get user_id from token
+        let payload = JSON.parse(window.atob(token.split('.')[1]));
+        this.$store.state.userID = payload.user_id;
+        // 配合router路由守卫部分，获取登录成功后要跳转的路由。
+        this.$router.push({name: 'Task'});
+      }).catch(err => {
+        console.log(err);
+      })
     },
-  },
+  }
 }
+
 </script>
 
 <style scoped>
