@@ -1,11 +1,12 @@
 <template>
   <div class="search row align-items-center text-center no-gutters">
     <div class="coin col-2">
-      <a href="#">{{ coin }}</a>
+      <!--      <a href="#">{{ coin }}</a>-->
+      <a href="#">{{ this.$store.state.coins.coin }}</a>
     </div>
     <!--    <input type="text" placeholder="Search..." class="col-7">-->
     <div class="dashboard col-8">
-      <p>Semester 1 - 2022</p>
+      <p>{{ curDay }}</p>
       <p>Dashboard</p>
     </div>
     <div class="col-2 d-block d-sm-block d-md-none" @click="showMenu">
@@ -21,26 +22,39 @@ export default {
   name: "SearchHeader",
   data() {
     return {
-      coin: 0,
+      coin: "00",
+      curDay: "",
     }
   },
   methods: {
     showMenu() {
       this.$emit('change')
-    }
+    },
+    getCurDay() {
+      let curDate = new Date();
+      let y = curDate.getFullYear();
+      let m = curDate.getMonth() + 1 < 10 ? "0" + (curDate.getMonth() + 1) : curDate.getMonth() + 1;
+      let d = curDate.getDate() < 10 ? "0" + curDate.getDate() : curDate.getDate();
+      this.curDay = d + "-" + m + "-" + y;
+    },
+    getCoin() {
+      // 发请求，从coin表中拿到数据存到vuex
+      let userID = this.$store.state.userID;
+      let url = `/users/${userID}/coins`;
+      instance.get(url).then(res => {
+        if (res.status === 200) {
+          this.coin = res.data.coin;
+          this.$store.state.coins = res.data;
+        }
+      }).catch(err => {
+        console.log(err);
+      })
+    },
   },
   created() {
-    const userID = JSON.parse(localStorage.getItem('user')).id;
-    let url = `/users/${userID}/coins`;
-    instance.get(url).then(res => {
-      if (res.status === 200) {
-        this.coin = res.data.coin
-        console.log(res.data)
-      }
-    }).catch(err => {
-      console.log(err)
-    })
-  }
+    this.getCurDay();
+    this.getCoin();
+  },
 }
 </script>
 

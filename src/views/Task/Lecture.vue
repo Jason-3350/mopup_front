@@ -6,25 +6,16 @@
     </div>
     <div class="lecture-list">
       <ul>
-        <li>
-          <div class="row align-items-center no-gutters">
-            <div class="col-2 text-center">
-              <input class="checkbox" type="checkbox">
-            </div>
+        <li v-for="(lecture,index) in lectures" :key="lecture.id">
+          <div class="row item align-items-center no-gutters" style="padding: 0.5rem">
             <div class="lecture-details col-10">
-              <p>English</p>
-              <p>English Building 14:00-15:00</p>
+              <p>{{ lecture.summary }}</p>
+              <p>{{ lecture.start }} - {{ lecture.end }}</p>
+              <p>{{ lecture.location }}</p>
             </div>
-          </div>
-        </li>
-        <li>
-          <div class="row align-items-center no-gutters">
-            <div class="col-2 text-center">
-              <input class="checkbox" type="checkbox">
-            </div>
-            <div class="lecture-details col-10">
-              <p>Math</p>
-              <p>Math Building 14:00-15:00</p>
+            <div class="col-2 text-center" @click="updateEvent(lecture.id)">
+              <img src="../../assets/circle.svg" alt="circle" style="width: 3rem" v-if="!lecture.status">
+              <img src="../../assets/check-circle.svg" alt="checked" style="width: 3rem" v-if="lecture.status">
             </div>
           </div>
         </li>
@@ -34,8 +25,57 @@
 </template>
 
 <script>
+import instance from "../../utils/request";
+
 export default {
-  name: "Lecture"
+  name: "Lecture",
+  data() {
+    return {
+      // lectures:[ {summary: "", location: "", start_time: "", end_time: ""},]
+      lectures: [],
+      show: true,
+    }
+  },
+  methods: {
+    getTodayLectures() {
+      const userID = this.$store.state.userID;
+      const curDay = this.$store.state.today;
+      let url = `/lectures/${userID}/${curDay}`;
+      instance.get(url).then(res => {
+        // console.log(res.data);
+        this.lectures = res.data;
+        this.updateCoins();
+        // updateCoins
+      }).catch(err => {
+        console.log(err);
+      })
+    },
+    updateEvent(lectureID) {
+      let url = `users/lectures/${lectureID}`;
+      instance.put(url).then(res => {
+        if (res.status === 205) {
+          this.getTodayLectures();
+        }
+      }).catch(err => {
+        console.log(err);
+      })
+    },
+    updateCoins() {
+      let userID = this.$store.state.userID;
+      let url = `/users/${userID}/coins`;
+      instance.get(url).then(res => {
+        if (res.status === 200) {
+          this.coin = res.data.coin;
+          this.$store.state.coins = res.data;
+        }
+      }).catch(err => {
+        console.log(err);
+      })
+    },
+  },
+  created() {
+    this.getTodayLectures();
+  },
 }
 </script>
 
@@ -53,19 +93,22 @@ export default {
 
 .lecture-list li {
   list-style: none;
-  border-bottom: 5px solid #f6f6f6;
+  padding: 1rem 2rem 1rem;
 }
 
-.checkbox {
-  width: 3rem;
-  height: 3rem;
+.item {
+  background-color: #f6f6f6;
+  border-radius: 1rem;
+  box-shadow: 2px 2px 2px #000000;
 }
 
 .lecture-details {
-  font-size: 2.5rem;
+  font-size: 1.2rem;
+  padding-left: 1rem;
 }
 
-.lecture-details p:nth-child(2) {
-  font-size: 1.5rem;
+.lecture-details p:first-child {
+  font-weight: 500;
+  font-size: 2rem;
 }
 </style>
