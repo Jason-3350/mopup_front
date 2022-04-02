@@ -78,16 +78,15 @@ export default {
           password: this.psw,
         }).then(res => {
           console.log(res.data);
-          if (res.data.result === true) {
+          if (res.status===226) {
+            alert('Incorrect Username or Password !')
+          }
+          if (res.status === 201) {
             // 请求成功接收成功的信息
-            this.status = res.data.msg;
+            alert('Register Done');
             this.username = "";
             this.email = "";
             this.psw = "";
-          }
-          if (res.data.result === false) {
-            // 接收并显示后端报错的信息
-            this.status = res.data.msg;
           }
         }).catch(err => {
           console.log(err)
