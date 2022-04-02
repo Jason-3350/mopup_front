@@ -1,6 +1,6 @@
 <template>
   <div class="congregate row justify-content-center no-gutters">
-    <div class="text-nowrap">Congratulations You Got 50 coins !!!</div>
+    <div class="text-nowrap">Congratulations, You Got {{this.$store.state.coins.coin}} coins !!!</div>
   </div>
 </template>
 

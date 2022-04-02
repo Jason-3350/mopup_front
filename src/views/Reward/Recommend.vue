@@ -1,11 +1,11 @@
 <template>
   <div class="recommendation  col-md-6">
     <div class="re-title row no-gutters">
-      <div class="col-1 bg-success"></div>
-      <div class="col-9">Recommendation</div>
-      <div class="col-2 bg-light text-center">
-        <router-link :to="{name:'AddRecom'}">Add</router-link>
-      </div>
+      <div class="col-1 bg-info"></div>
+      <div class="col-11">Recommendation</div>
+<!--      <div class="col-2 bg-light text-center">-->
+<!--        <router-link :to="{name:'AddRecom'}">Add</router-link>-->
+<!--      </div>-->
     </div>
     <div class="re-details">
       <ul>

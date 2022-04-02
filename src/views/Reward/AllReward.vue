@@ -2,10 +2,10 @@
   <div class="all-rewards  col-md-6">
     <div class="re-title row no-gutters">
       <div class="col-1 bg-success"></div>
-      <div class="col-9">All Rewards</div>
-      <div class="col-2 bg-light text-center">
-        <router-link :to="{name:'AddReward'}">Add</router-link>
-      </div>
+      <div class="col-11">All Rewards</div>
+<!--      <div class="col-2 bg-light text-center">-->
+<!--        <router-link :to="{name:'AddReward'}">Add</router-link>-->
+<!--      </div>-->
     </div>
     <div class="re-details">
       <ul>
