@@ -3,10 +3,10 @@ import createAuthRefreshInterceptor from 'axios-auth-refresh';
 import store from "../store";
 
 const instance = axios.create({
-  // baseURL: "https://mopupapi.herokuapp.com",
-  // timeout: 10000,
-  baseURL: "http://127.0.0.1:8000",
+  baseURL: "https://mopupapi.herokuapp.com",
   timeout: 20000,
+  // baseURL: "http://127.0.0.1:8000",
+  // timeout: 20000,
 })
 
 
