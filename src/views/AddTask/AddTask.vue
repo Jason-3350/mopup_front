@@ -29,9 +29,5 @@ export default {
   margin: 0;
 }
 
-/* 右侧任务和目标栏 */
-.adding-added {
-  /*width: 100%;*/
-}
 
 </style>

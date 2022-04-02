@@ -33,8 +33,12 @@ export default {
       this.$router.push({name: "Task"});
     },
     getTodos() {
-      const userID = JSON.parse(localStorage.getItem('user')).id
-      let url = `/users/${userID}/goals`
+      // const userID = JSON.parse(localStorage.getItem('user')).id
+      const userID = this.$store.state.userID;
+      // const curDay = localStorage.getItem('today');
+      const curDay = this.$store.state.today;
+
+      let url = `/goals/${userID}/${curDay}`
       instance.get(url).then(res => {
         if (res.status === 200) {
           this.todos = res.data;
@@ -44,10 +48,10 @@ export default {
         console.log(err);
       })
     },
-    del(id) {
-      console.log(id);
+    del(todo_id) {
+      console.log(todo_id);
       if (window.confirm("Are you sure to delete ?")) {
-        let url = `/users/${id}/goals`
+        let url = `/users/goals/${todo_id}`
         instance.delete(url).then(res => {
           if (res.status === 204) {
             this.getTodos()

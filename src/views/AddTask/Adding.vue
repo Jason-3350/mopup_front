@@ -41,9 +41,13 @@ export default {
   methods: {
     add() {
       if (window.confirm("Are you sure to add it ?")) {
-        const curDate = new Date();//获取当前时间
-        // 获取日期格式并转换成django要求的数据格式
-        const today = curDate.toLocaleDateString().replaceAll('/', '-');//获取当前日期
+        // const curDate = new Date();//获取当前时间
+        // // 获取日期格式并转换成django要求的数据格式
+        // const today = curDate.toLocaleDateString().replaceAll('/', '-');//获取当前日期
+        // const userID = JSON.parse(localStorage.getItem('user')).id
+        const userID = this.$store.state.userID;
+        // const today = localStorage.getItem('today');
+        const today = this.$store.state.today;
         instance.post('/users/addgoals', {
           goal: this.goal,
           location: this.location,
@@ -51,7 +55,8 @@ export default {
           start: this.startTimeValue,
           end: this.endTimeValue,
           status: '0',
-          user: JSON.parse(localStorage.getItem('user')).id,
+          // user: JSON.parse(localStorage.getItem('user')).id,
+          user: this.$store.state.userID,
         }).then(res => {
           if (res.status === 201) {
             // 通过父组件AddTask调用Added的方法
@@ -65,13 +70,6 @@ export default {
         }).catch(err => {
           console.log(err);
         })
-        // this.$set(this.events, 'id', nanoid());
-        // this.$set(this.events, 'done', 'false');
-        // this.$set(this.events, 'start', this.startTimeValue);
-        // this.$set(this.events, 'end', this.endTimeValue);
-        // this.$store.commit('addTodo', this.events);
-        // console.log(this.startTimeValue);
-        // this.events = {};
       }
     }
   }
