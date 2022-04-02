@@ -1,7 +1,7 @@
 <template>
   <div class="left-sidebar text-center">
     <div class="sidebar-img"><img src="../../assets/avatar.jpg" class="img-thumbnail" alt="logo image"></div>
-    <div class="username">{{ username }}</div>
+    <div class="username">{{ this.$store.state.user.username }}</div>
     <div class="sideList">
       <ul>
         <li>
@@ -9,6 +9,9 @@
         </li>
         <li>
           <router-link :to="{name:'Reward'}" class="router-link-exact-active">Reward</router-link>
+        </li>
+        <li>
+          <router-link :to="{name:'Order'}" class="router-link-exact-active">Orders</router-link>
         </li>
         <li>
           <router-link :to="{name:'Settings'}" class="router-link-exact-active">Settings</router-link>
@@ -23,32 +26,38 @@
 </template>
 
 <script>
+import instance from "../../utils/request";
+
 export default {
   name: "Menus",
   data() {
-    return {
-      username: '',
-    }
+    return {}
   },
   created() {
-    const user = JSON.parse(localStorage.getItem('user'))
-    this.username = user.username
+    instance.get('/userinfo/' + this.$store.state.userID).then(res => {
+      if (res.status === 200) {
+        // console.log(res.data);
+        this.$store.state.user = res.data;
+      }
+    }).catch(err => {
+      console.log(err);
+    })
   },
   methods: {
     logout() {
+      this.$store.commit('logout');
       this.$router.push({name: 'Login'});
-      // 退出时删除本地存储数据
-      localStorage.clear();
     }
   }
 }
 </script>
 
 <style scoped>
-*{
+* {
   padding: 0;
   margin: 0;
 }
+
 .router-link-active {
   background-color: #eeeeee;
 }
