@@ -61,8 +61,8 @@ export default {
     },
     urlDone() {
       // let user_id = JSON.parse(localStorage.getItem('user')).id;
-      if (window.confirm('Upload Confirm ?')){
-        if(this.icsURL){
+      if (window.confirm('Upload Confirm ?')) {
+        if (this.icsURL) {
           let user_id = this.$store.state.userID;
           instance.post('/icalurl', {
             icsUrl: this.icsURL,
@@ -72,11 +72,15 @@ export default {
               alert("Uploaded successfully");
               this.icsURL = "";
             }
+            if (res.status === 226) {
+              alert("Maybe the same iCal File ! Please check !");
+              this.icsURL = "";
+            }
           }).catch(err => {
             console.log(err);
             alert("Upload Failed");
           })
-        }else {
+        } else {
           alert('URL input empty !');
         }
       }
@@ -97,6 +101,10 @@ export default {
             // console.log("Done");
             if (res.status === 201) {
               alert("Uploaded successfully");
+            }
+            if (res.status === 226) {
+              alert("Maybe the same iCal File ! Please check !");
+              this.icsURL = "";
             }
           }).catch(err => {
             console.log(err);
