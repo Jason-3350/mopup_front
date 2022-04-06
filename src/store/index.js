@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import instance from "../utils/request";
+
 //1.安装vuex
 Vue.use(Vuex);
 //2.创建store对象

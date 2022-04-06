@@ -62,23 +62,28 @@ export default {
     signup() {
       this.$router.push({name: "SignUp"});
     },
-    signIn() {
-      instance.post('token', {
-        username: this.email,
-        password: this.psw,
-      }).then(res => {
-        // save token and refresh token into vuex
-        this.$store.commit('setToken', res.data.access);
-        this.$store.commit('refreshToken', res.data.refresh);
-        const token = localStorage.getItem('token');
-        // Get user_id from token
-        let payload = JSON.parse(window.atob(token.split('.')[1]));
-        this.$store.state.userID = payload.user_id;
-        // 配合router路由守卫部分，获取登录成功后要跳转的路由。
-        this.$router.push({name: 'Task'});
-      }).catch(err => {
-        console.log(err);
-      })
+    signIn () {
+      const checkInput = this.validEmail()
+      console.log(checkInput)
+      if (checkInput !== false) {
+        instance.post('token', {
+          username: this.email,
+          password: this.psw,
+        }).then(res => {
+          // save token and refresh token into vuex
+          this.$store.commit('setToken', res.data.access)
+          this.$store.commit('refreshToken', res.data.refresh)
+          const token = localStorage.getItem('token')
+          // Get user_id from token
+          let payload = JSON.parse(window.atob(token.split('.')[1]))
+          this.$store.state.userID = payload.user_id
+          // 配合router路由守卫部分，获取登录成功后要跳转的路由。
+          this.$router.push({ name: 'Task' })
+        }).catch(err => {
+          alert('Email or Password is incorrect !')
+          console.log(err)
+        })
+      }
     },
   }
 }
